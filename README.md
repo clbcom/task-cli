@@ -15,6 +15,7 @@ No se debe utilizar ninguna libreria externa, esto es netamente para aprender la
 - Guardar el archivo JSON en la ruta actual del proyecto.
 
 ## TODO
+- [ ] Crear diagramas de flujo para agregar, actualizar, eliminar y cambiar el estado de una tarea
 - [ ] Crear un manejador de argumentos para la linea de comandos.
 - [ ] Crear un manejador de archivos para guardar la tareas en un archivo JSON.
 
