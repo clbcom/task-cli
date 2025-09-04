@@ -20,6 +20,7 @@ void run(List<String> args) async {
       break;
     case "delete":
       print("Deleteando");
+      delete(valuesArgs, dataFile);
       break;
     case "list":
       list(valuesArgs, dataFile);
@@ -28,13 +29,13 @@ void run(List<String> args) async {
 }
 
 void add(List<String> valuesArgs, File dataFile) async {
-  List data = dataFile.existsSync() ? await readFile(dataFile) : [];
+  List data = await readFile(dataFile);
   List idsForDisplay = []; // lista de ids agregados.
 
   for (int i = 0; i < valuesArgs.length; i++) {
     var task = {
       'id': (data.length + 1).toString(),
-      'content': valuesArgs[i],
+      'description': valuesArgs[i],
       'status': 'todo',
     };
 
@@ -48,14 +49,24 @@ void add(List<String> valuesArgs, File dataFile) async {
 
 void update(List<String> valuesArgs, File dataFile) {}
 
+void delete(List<String> valuesArgs, File dataFile) async {
+  List data = await readFile(dataFile);
+
+  data.removeWhere((task) => valuesArgs.contains(task['id']));
+  saveFile(dataFile, data);
+
+  print("Task deleted ${valuesArgs.first} succesfully");
+  
+}
+
 void list(List<String> valuesArgs, File dataFile) async {
-  List data = dataFile.existsSync() ? await readFile(dataFile) : [];
+  List data = await readFile(dataFile);
   if (data.isEmpty) {
     print('No existen tareas, agregue alguna');
     return;
   }
 
-  print("ID\t|STATUS\t\t|CONTENT");
+  print("ID\t|STATUS\t\t|DESCRIPTION");
   print("-" * 48);
   for (var task in data) {
     if (valuesArgs.isEmpty || task['status'] == valuesArgs[0]) {
@@ -74,14 +85,15 @@ void saveFile(File dataFile, List data) async {
 }
 
 Future<List> readFile(File dataFile) async {
-  return jsonDecode(await dataFile.readAsString());
+  return dataFile.existsSync() ? jsonDecode(await dataFile.readAsString()) : [];
 }
-  /// Esta funcion separa la lista de argumentos en un Record
-  /// de @action y la lista que viene despues
-  (String, List<String>) parsheArguments(List<String> args) {
-    if (args case [String action, ...]) {
-      return (action, args.sublist(1));
-    } else {
-      throw Exception("No existen argumentos");
-    }
+
+/// Esta funcion separa la lista de argumentos en un Record
+/// de @action y la lista que viene despues
+(String, List<String>) parsheArguments(List<String> args) {
+  if (args case [String action, ...]) {
+    return (action, args.sublist(1));
+  } else {
+    throw Exception("No existen argumentos");
   }
+}
