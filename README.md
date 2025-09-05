@@ -3,9 +3,9 @@ No se debe utilizar ninguna libreria externa, esto es netamente para aprender la
 
 ## Requerimientos
 - [x] Agregar tareas.
-- [ ] Actualizar tareas.
-- [ ] eliminar tareas.
-- [ ] Marcar una tarea como terminada o en progreso.
+- [x] Actualizar tareas.
+- [x] eliminar tareas.
+- [x] Marcar una tarea como terminada o en progreso.
 - [x] Listar todas las tareas.
 - [x] Listar todas las tareas terminadas.
 - [x] Listar todas las tareas no terminadas.
@@ -21,3 +21,9 @@ No se debe utilizar ninguna libreria externa, esto es netamente para aprender la
 - [x] Crear un manejador de argumentos para la linea de comandos.
 - [x] Crear un manejador de archivos para guardar la tareas en un archivo JSON.
 
+## Instalacion
+```bash
+git clone https://github.com/clbcom/task-cli.git
+cd task-cli
+dart run bin/task-cli.dart help
+```
