@@ -1,5 +1,6 @@
 # Una lista de tarea en DART
 No se debe utilizar ninguna libreria externa, esto es netamente para aprender la linea de comandos con DART
+Proyecto recomendado hacer por la pagina [Roadmap](https://roadmap.sh/projects/task-tracker)
 
 ## Requerimientos
 - [x] Agregar tareas.
@@ -27,3 +28,4 @@ git clone https://github.com/clbcom/task-cli.git
 cd task-cli
 dart run bin/task-cli.dart help
 ```
+https://roadmap.sh/projects/task-tracker
